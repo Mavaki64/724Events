@@ -13,6 +13,13 @@ describe("When Form is created", () => {
   describe("and a click is triggered on the submit button", () => {
     it("the success message is displayed", async () => {
       render(<Home />);
+      const fields = await screen.findAllByTestId("field-testid");
+      fireEvent.change(fields[0], { target: { value: "Doe" } }); // nom
+      fireEvent.change(fields[1], { target: { value: "John" } });   // prenom
+      fireEvent.change(fields[2], { target: { value: "john.doe@724events.com" } }); // email
+      fireEvent.change(fields[3], { target: { value: "Coucou j'ai ecris ce test" } }); // message
+      const hiddenTypeInput = document.querySelector('input[type="hidden"][name="type"]');
+      fireEvent.change(hiddenTypeInput, { target: { value: "Personel" } });
       fireEvent(
         await screen.findByText("Envoyer"),
         new MouseEvent("click", {
