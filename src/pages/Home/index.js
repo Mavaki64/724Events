@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
 import EventCard from "../../components/EventCard";
@@ -13,6 +14,8 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
+  const [isSuccess, setIsSuccess] = useState(null);
+  const [error, setError] = useState(null);
   const last = useData().data?.events?.reduce((latestEvent, currentEvent) => (new Date(currentEvent.date) > new Date(latestEvent.date) ? currentEvent : latestEvent));
   return <>
     <header>
@@ -95,19 +98,35 @@ const Page = () => {
         <h2 className="Title">Contact</h2>
         <Modal
           Content={
-            <div className="ModalMessage--success">
-              <div>Message envoyé !</div>
-              <p>
-                Merci pour votre message nous tâcherons de vous répondre dans
-                les plus brefs délais
-              </p>
-            </div>
+            isSuccess ? (
+              <div className="ModalMessage--success">
+                <div>Message envoyé !</div>
+                <p>
+                  Merci pour votre message nous tâcherons de vous répondre dans
+                  les plus brefs délais
+                </p>
+              </div>
+            ) : (
+              <div className="ModalMessage--success">
+                <div>Erreur</div>
+                <p>
+                  {error?.message}
+                </p>
+              </div>
+            )
           }
         >
           {({ setIsOpened }) => (
             <Form
-              onSuccess={() => setIsOpened(true)}
-              onError={() => null}
+              onSuccess={() => {
+                setIsOpened(true);
+                setIsSuccess(true);
+              }}
+              onError={(err) => {
+                setIsOpened(true);
+                setIsSuccess(false);
+                setError(err);
+              }}
             />
           )}
         </Modal>
