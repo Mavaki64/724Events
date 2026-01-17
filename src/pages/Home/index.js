@@ -61,7 +61,7 @@ const Page = () => {
       <section className="PeoplesContainer">
         <h2 className="Title">Notre équipe</h2>
         <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
-        <div className="ListContainer">
+        <div className="ListContainer" data-testid="people-list">
           <PeopleCard
             imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
             name="Samira"
@@ -132,7 +132,7 @@ const Page = () => {
         </Modal>
       </div>
     </main>
-    <footer className="row">
+    <footer className="row" data-testid="footer">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         {!last ? (
@@ -144,6 +144,7 @@ const Page = () => {
               date={new Date(last?.date)}
               small
               label="boom"
+              data-testid="last-prestation"
             />
           )}
       </div>
