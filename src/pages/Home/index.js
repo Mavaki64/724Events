@@ -13,6 +13,8 @@ import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
+// Dans le footer l'image n'apparaissait pas.
+
 const Page = () => {
   const [isSuccess, setIsSuccess] = useState(null);
   const [error, setError] = useState(null);

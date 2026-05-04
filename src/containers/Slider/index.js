@@ -4,6 +4,9 @@ import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
 
+// Correction du problème d'index qui créer une image blanche dans le slider. 
+// Correction de l'ordre des évenemment, du plus ancien au plus récent dans le slider.
+
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);

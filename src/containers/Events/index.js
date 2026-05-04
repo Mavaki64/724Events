@@ -7,6 +7,10 @@ import ModalEvent from "../ModalEvent";
 
 import "./style.css";
 
+// Le select utilisé pour filtrer les évenement ne fonctionnait pas.
+// Dans la liste des évenmenents, le bon mois n'était pas affiché et certain n'affichait pas de date.
+// L'index des mois n'était pas bien définir dans helpers/Date/index.js
+
 const PER_PAGE = 9;
 
 const EventList = () => {
